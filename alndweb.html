@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-shop</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        body {
+            background: #0a0a1f;
+            color: #fff;
+        }
+
+        nav {
+            background: rgba(16, 16, 48, 0.95);
+            padding: 20px;
+            border-bottom: 2px solid #00f7ff;
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-top: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #00f7ff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 20px 40px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200') center/cover;
+            margin-bottom: 40px;
+            border-radius: 15px;
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        h1, h2 {
+            color: #fff;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: rgba(16, 16, 48, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.2);
+            border-color: #00f7ff;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .product-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #00f7ff;
+        }
+
+        .product-card p {
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .price {
+            font-size: 1.4em;
+            color: #00f7ff;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .buy-btn {
+            background: linear-gradient(45deg, #00f7ff, #2979ff);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.5);
+        }
+
+        .buy-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+
+        .about-section {
+            background: rgba(16, 16, 48, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .contact-form {
+            background: rgba(16, 16, 48, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #00f7ff;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(16, 16, 48, 0.95);
+            border-top: 2px solid #00f7ff;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>AL-SHOP</h1>
+        <ul>
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#products">Produk</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#gallery">Galeri</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <div class="container" id="home">
+        <div class="hero">
+            <h2>Selamat Datang di Toko Online Aland</h2>
+            <p>Temukan masa depan teknologi dengan produk-produk terkini kami</p>
+        </div>
+    </div>
+
+    <div class="container" id="products">
+        <h2>Produk Unggulan</h2>
+        <div class="products">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147" alt="VR Headset">
+                <h3>Headset VR Pro</h3>
+                <p>Headset virtual reality generasi terbaru dengan resolusi 4K per mata</p>
+                <p class="price">Rp 9.999.000</p>
+                <button class="buy-btn">Tambah ke Keranjang</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e" alt="Wireless Headphones">
+                <h3>Headphone Premium</h3>
+                <p>Headphone nirkabel hi-fi dengan peredam bising</p>
+                <p class="price">Rp 4.999.000</p>
+                <button class="buy-btn">Tambah ke Keranjang</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45" alt="Gaming Laptop">
+                <h3>Laptop Gaming</h3>
+                <p>Laptop gaming bertenaga dengan RTX 4080 dan RAM 32GB</p>
+                <p class="price">Rp 29.999.000</p>
+                <button class="buy-btn">Tambah ke Keranjang</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="about">
+        <h2>Tentang Kami</h2>
+        <div class="about-section">
+            <p>Toko Online Aland adalah destinasi utama Anda untuk teknologi dan peralatan gaming terkini. Didirikan pada tahun 2025, kami berkomitmen untuk menghadirkan inovasi terbaru kepada pelanggan kami.</p>
+            <p>Misi kami adalah menyediakan produk berkualitas tinggi dengan harga kompetitif, didukung oleh layanan pelanggan yang luar biasa.</p>
+        </div>
+    </div>
+
+    <div class="container" id="gallery">
+        <h2>Galeri Produk</h2>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2" alt="Setup Teknologi">
+            <img src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c" alt="Setup Gaming">
+            <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5" alt="Gaming VR">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="Kantor Teknologi">
+        </div>
+    </div>
+
+    <div class="container" id="contact">
+        <h2>Hubungi Kami</h2>
+        <div class="contact-form">
+            <form>
+                <input type="text" placeholder="Nama Anda" required>
+                <input type="email" placeholder="Email Anda" required>
+                <textarea rows="5" placeholder="Pesan Anda" required></textarea>
+                <button class="buy-btn" type="submit">Kirim Pesan</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>Copyright © Aland 2025</p>
+    </footer>
+</body>
+</html>
